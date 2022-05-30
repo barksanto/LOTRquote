@@ -5,11 +5,17 @@ app.listen(3000, function () {
   console.log("Listening on 3000 🔔");
 });
 
-app.get("/", function (req, res) {
-  res.send("Hello World!!!!!!");
+app.get("/", (req, res) => {
+  // console.log("Hello from server.js!");
+
+  // res.send("Hello World!!!!!!");
+  console.log(__dirname);
+  res.sendFile(__dirname + "/index.html");
 });
 
-app.get("/", (req, res) => {});
+// app.get("/", (req, res) => {
+//   console.log("Hello from server.js!");
+// });
 
 // const express = require('express')
 // const bodyParser = require('body-parser')
