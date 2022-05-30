@@ -19,6 +19,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     });
 
     app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
+    app.set("view engine", "ejs");
 
     app.get("/", (req, res) => {
       const cursor = db
@@ -27,10 +28,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .toArray()
         .then((results) => {
           console.log(results);
+          // results is the array of objects in the collection
+          res.render("index.ejs", { quotes: results });
         })
         .catch((error) => console.error(error));
 
-      res.sendFile(__dirname + "/index.html");
+      // res.sendFile(__dirname + "/index.html"); // commented out because we can only have one send method.
     });
 
     app.post("/quotes", (req, res) => {
