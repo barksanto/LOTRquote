@@ -21,7 +21,15 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
 
     app.get("/", (req, res) => {
-      // res.send("Hello World!!!!!!");
+      const cursor = db
+        .collection("quotes")
+        .find()
+        .toArray()
+        .then((results) => {
+          console.log(results);
+        })
+        .catch((error) => console.error(error));
+
       res.sendFile(__dirname + "/index.html");
     });
 
@@ -30,6 +38,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .insertOne(req.body)
         .then((result) => {
           console.log(result);
+          res.redirect("/");
         })
         .catch((error) => console.error(error));
     });
