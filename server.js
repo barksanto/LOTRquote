@@ -1,40 +1,40 @@
 const express = require("express");
-const bodyParser = require("body-parser"); // Middleware for helping read request object
 const app = express();
+const bodyParser = require("body-parser"); // Middleware for helping read request object
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
 const connectionString =
   "mongodb+srv://barksanto:xXeS3CKKjnCp0Rw0@cluster0.b6knnb1.mongodb.net/?retryWrites=true&w=majority";
 
-MongoClient.connect(
-  //Connect to MongoDb Cluster
-  connectionString,
-  {
-    useUnifiedTopology: true, // removes depracation error
-  },
-  (err, client) => {
-    // ... do something here
-    if (err) return console.error(err);
+// connection string contains username and password for access to db
+MongoClient.connect(connectionString, { useUnifiedTopology: true })
+  .then((client) => {
     console.log("Connected to Database");
-  }
-);
+    const db = client.db("STARQUOTE");
+    const quotesCollection = db.collection("quotes");
 
-app.listen(3000, function () {
-  console.log("Listening on 3000 🔔");
-});
+    app.listen(3000, function () {
+      console.log("Listening on 3000 🔔");
+    });
 
-app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
+    app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
 
-app.get("/", (req, res) => {
-  // res.send("Hello World!!!!!!");
-  res.sendFile(__dirname + "/index.html");
-});
+    app.get("/", (req, res) => {
+      // res.send("Hello World!!!!!!");
+      res.sendFile(__dirname + "/index.html");
+    });
 
-app.post("/quotes", (req, res) => {
-  console.log(req.body); // We can use req.body
-  res.send("Whats up from the post response ");
-});
+    app.post("/quotes", (req, res) => {
+      quotesCollection
+        .insertOne(req.body)
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((error) => console.error(error));
+    });
+  })
+  .catch(console.error);
 
 // app.get("/", (req, res) => {
 //   console.log("Hello from server.js!");
