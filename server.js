@@ -18,8 +18,32 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       console.log("Listening on 3000 🔔");
     });
 
+    // MIDDLEWARE
     app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
     app.set("view engine", "ejs");
+    app.use(express.static("public"));
+    app.use(bodyParser.json());
+
+    app.put("/quotes", (req, res) => {
+      quotesCollection
+        .findOneAndUpdate(
+          { name: "Yoda" },
+          {
+            $set: {
+              name: req.body.name,
+              quote: req.body.quote,
+            },
+          },
+          {
+            upsert: true,
+          }
+        )
+        .then((result) => {
+          // console.log(result);
+          res.json("Success");
+        })
+        .catch((error) => console.error(error));
+    });
 
     app.get("/", (req, res) => {
       const cursor = db
@@ -40,7 +64,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       quotesCollection
         .insertOne(req.body)
         .then((result) => {
-          console.log(result);
+          // console.log(result);
           res.redirect("/");
         })
         .catch((error) => console.error(error));
