@@ -51,7 +51,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .find()
         .toArray()
         .then((results) => {
-          console.log(results);
+          // console.log(results);
           // results is the array of objects in the collection
           res.render("index.ejs", { quotes: results });
         })
@@ -66,6 +66,19 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .then((result) => {
           // console.log(result);
           res.redirect("/");
+        })
+        .catch((error) => console.error(error));
+    });
+
+    app.delete("/quotes", (req, res) => {
+      quotesCollection
+        .deleteOne({ name: req.body.name })
+        .then((result) => {
+          // console.log(result.deletedCount);
+          if (result.deletedCount === 0) {
+            return res.json("No quote to delete");
+          }
+          res.json(`Deleted Darth Vadar's quote`);
         })
         .catch((error) => console.error(error));
     });
