@@ -4,53 +4,68 @@
 <head>
   <!-- <meta charset="UTF-8" /> -->
   <title>Star Wars Quote App</title>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 
 <body>
   <h1>May Node and Express be with you.</h1>
+
   <!-- action is WHERE to send the request -->
-  <form action="/quotes" method="POST">
-    <input type="text" placeholder="name" name="name" />
-    <input type="text" placeholder="quote" name="quote" />
-    <button type="submit">Submit</button>
-  </form>
-  <h2>QUOTES</h2>
-  <!-- <%= quotes %> -->
-  <ul class="quotes">
-    <!-- Loop through quotes -->
-    <% for(var i=0; i < quotes.length; i++) {%>
-      <li class="quote">
-        <!-- Output name from the iterated quote object -->
-        <span>
-          <%= quotes[i].name %>
-        </span>:
-        <!-- Output quote from the iterated quote object -->
-        <span>
-          <%= quotes[i].quote %>
-        </span>
-      </li>
-      <% } %>
-  </ul>
+  <!-- <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" alt="" srcset=""> -->
+  <div class="top--section">
 
-
-  <div>
-    <h2>Darth Vadar invades!</h2>
-    <p>
-      Replace first Yoda's quote with a quote written by Darth Vadar
-    </p>
-    <button id="update-button">Replace Yoda's quote</button>
+    <div class="top--card">
+      <h3>Add a quote</h3>
+      <form action="/quotes" method="POST">
+        <input type="text" placeholder="name" name="name" />
+        <input type="text" placeholder="quote" name="quote" />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  
+  
+    <div class="top--card">
+      <h3>Darth Vadar invades!</h3>
+      <p>
+        Replace first Yoda's quote with a quote written by Darth Vadar
+      </p>
+      <button id="update-button">Replace Yoda's quote</button>
+    </div>
+    
+    <div class="top--card">
+      <h3>Remove Darth Vadar!</h3>
+      <p>
+        Delete one Darth Vadar's quote. Does nothing if there are no more Darth
+        Vadar's quote
+      </p>
+      <button id="delete-button">Delete Darth Vadar's quote</button>
+      <div id="message"></div>
+    </div>
   </div>
 
-<div>
-  <h2>Remove Darth Vadar!</h2>
-  <p>
-    Delete one Darth Vadar's quote. Does nothing if there are no more Darth
-    Vadar's quote
-  </p>
-  <button id="delete-button">Delete Darth Vadar's quote</button>
-  <div id="message"></div>
+  <div class="bottom--section">
+   
 
-</div>
+
+    <h2>QUOTES</h2>
+    <!-- <%= quotes %> -->
+    <ul class="quotes">
+      <!-- Loop through quotes -->
+      <% for(var i=0; i < quotes.length; i++) {%>
+        <li class="quote">
+          <!-- Output name from the iterated quote object -->
+          <span>
+            <%= quotes[i].name %>
+          </span>:
+          <!-- Output quote from the iterated quote object -->
+          <span>
+            <%= quotes[i].quote %>
+          </span>
+        </li>
+        <% } %>
+    </ul>
+  </div>
+
 
 
 
@@ -60,62 +75,3 @@
 </html>
 
 
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Star Wars Quote App</title>
-    <link rel="stylesheet" href="/styles.css" />
-  </head>
-
-  <body>
-    <h1 data-position="header">May Node and Express be with you.</h1>
-
-    <section data-position="add-quote">
-      <h2>Add quote</h2>
-
-      <form action="/quotes" method="POST">
-        <input type="text" placeholder="name" name="name" />
-        <input type="text" placeholder="quote" name="quote" />
-        <button type="submit">Submit</button>
-      </form>
-    </section>
-
-    <section data-position="update-quote">
-      <div>
-        <h2>Darth Vadar invades!</h2>
-        <p>
-          Replace first Yoda's quote with a quote written by Darth Vadar
-        </p>
-        <button id="update-button">Replace Yoda's quote</button>
-      </div>
-    </section>
-
-    <section data-position="delete-quote">
-      <div>
-        <h2>Remove Darth Vadar!</h2>
-        <p>
-          Delete one Darth Vadar's quote. Does nothing if there are no more
-          Darth Vadar's quote
-        </p>
-        <button id="delete-button">Delete Darth Vadar's quote</button>
-      </div>
-      <div id="message"></div>
-    </section>
-
-    <section data-position="quotes">
-      <h2>Quotes</h2>
-
-      <ul class="quotes">
-        <% for(var i = 0; i < quotes.length; i++) {%>
-        <li class="quote">
-          <span><%= quotes[i].name %></span>:
-          <span><%= quotes[i].quote %></span>
-        </li>
-        <% } %>
-      </ul>
-    </section>
-
-    <script src="/main.js"></script>
-  </body>
-</html> -->

@@ -1,6 +1,9 @@
 // /* eslint-env browser */
 // // main.js
 const update = document.querySelector("#update-button");
+const deleteButton = document.querySelector("#delete-button");
+const messageDiv = document.querySelector("#message");
+
 update.addEventListener("click", () => {
   fetch("/quotes", {
     method: "put",
@@ -17,9 +20,6 @@ update.addEventListener("click", () => {
       console.log(response);
     });
 });
-
-const deleteButton = document.querySelector("#delete-button");
-const messageDiv = document.querySelector("#message");
 
 deleteButton.addEventListener("click", (_) => {
   fetch("/quotes", {
