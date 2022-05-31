@@ -71,3 +71,8 @@ h1{
   background-color: black;
 }
 
+.quote{
+  background-color: rgb(132, 132, 132);
+  border: 1px solid white;
+  margin: 5px 0;
+}

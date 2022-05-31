@@ -41,3 +41,31 @@ deleteButton.addEventListener("click", (_) => {
     })
     .catch(console.error);
 });
+
+const deleteIndividual = document.querySelectorAll(".individual-delete");
+
+deleteIndividual.forEach((button) => {
+  button.addEventListener("click", (e) => {
+    let currentDeleteId = e.path[1].id;
+    console.log(currentDeleteId);
+    fetch("/quotes", {
+      method: "delete",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        id: currentDeleteId,
+      }),
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.ok) return res.json();
+      })
+      // .then((response) => {
+      //   if (response === "No quote to delete") {
+      //     messageDiv.textContent = "No Darth Vadar quote to delete";
+      //   } else {
+      //     window.location.reload(true);
+      //   }
+      // })
+      .catch(console.error);
+  });
+});

@@ -52,7 +52,7 @@
     <ul class="quotes">
       <!-- Loop through quotes -->
       <% for(var i=0; i < quotes.length; i++) {%>
-        <li class="quote">
+        <li class="quote" id=<%=quotes[i]._id %> >
           <!-- Output name from the iterated quote object -->
           <span>
             <%= quotes[i].name %>
@@ -61,7 +61,9 @@
           <span>
             <%= quotes[i].quote %>
           </span>
+          <button class="individual-delete">Delete this quote</button>
         </li>
+        
         <% } %>
     </ul>
   </div>
