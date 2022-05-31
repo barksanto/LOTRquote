@@ -59,8 +59,12 @@ deleteIndividual.forEach((button) => {
       }),
     })
       .then((res) => {
-        console.log(res);
-        if (res.ok) return res.json();
+        // console.log(res);
+        location.reload()
+        // if (res.ok) return res.json();
+      })
+      .then(()=>{
+        location.reload()
       })
       // .then((response) => {
       //   if (response === "No quote to delete") {
@@ -76,15 +80,17 @@ deleteIndividual.forEach((button) => {
     // API request to LOTR API. 
     const newQuoteBtn = document.querySelector(".new-quote")
     newQuoteBtn.addEventListener('click', function(e) {
-      console.log('button was clicked');
+      // console.log('button was clicked');
 
       fetch('/clicked', {method: 'POST'})
         .then(function(response) {
-          if(response.ok) {
-            console.log('Click was recorded');
-            return;
-          }
-          throw new Error('Request failed.');
+          console.log(response)
+          // if(response.ok) {
+          //   console.log('Click was recorded');
+          //   // location.reload()
+          //   return;
+          // }
+          // throw new Error('Request failed.');
         })
         .catch(function(error) {
           console.log(error);

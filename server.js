@@ -28,26 +28,28 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.use(express.static("public"));
     app.use(bodyParser.json());
 
-    app.put("/quotes", (req, res) => {
-      quotesCollection
-        .findOneAndUpdate(
-          { name: "Yoda" },
-          {
-            $set: {
-              name: req.body.name,
-              quote: req.body.quote,
-            },
-          },
-          {
-            upsert: true,
-          }
-        )
-        .then((result) => {
-          // console.log(result);
-          res.json("Success");
-        })
-        .catch((error) => console.error(error));
-    });
+
+    // UPDATE
+    // app.put("/quotes", (req, res) => {
+    //   quotesCollection
+    //     .findOneAndUpdate(
+    //       { name: "Yoda" },
+    //       {
+    //         $set: {
+    //           name: req.body.name,
+    //           quote: req.body.quote,
+    //         },
+    //       },
+    //       {
+    //         upsert: true,
+    //       }
+    //     )
+    //     .then((result) => {
+    //       // console.log(result);
+    //       res.json("Success");
+    //     })
+    //     .catch((error) => console.error(error));
+    // });
 
     app.get("/", (req, res) => {
       const cursor = db
@@ -79,7 +81,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           if (result.deletedCount === 0) {
             return res.json("No quote to delete");
           }
-          console.log(result);
+          // console.log(result);
           return res.json(`Quote has been deleted!`);
         })
         .catch((error) => console.error(error));
@@ -93,24 +95,19 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
         
         const quoteData = res.data;
-        console.log(quoteData.author)
-        console.log(quoteData.quote)
 
         const newQuote = {
           name: quoteData.author,
           quote: quoteData.quote
         }
-        // console.log(newQuote)
+        
          quotesCollection
         .insertOne(newQuote)
         .then((result) => {
           console.log(result);
-          
         })
         .catch((error) => console.error(error));
 
-
-      
       })
       .catch(err => {
         console.log('Error: ', err.message);
