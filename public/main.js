@@ -1,27 +1,26 @@
 // /* eslint-env browser */
-// // main.js
 const update = document.querySelector("#update-button");
 const deleteButton = document.querySelector("#delete-button");
 const messageDiv = document.querySelector("#message");
 
-update.addEventListener("click", () => {
-  fetch("/quotes", {
-    method: "put",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name: "Darth Vadar",
-      quote: "I find your lack of faith disturbing.",
-    }),
-  })
-    .then((res) => {
-      if (res.ok) return res.json();
-    })
-    .then((response) => {
-      console.log(response);
-    });
-});
+// update.addEventListener("click", () => {
+//   fetch("/quotes", {
+//     method: "put",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify({
+//       name: "Darth Vadar",
+//       quote: "I find your lack of faith disturbing.",
+//     }),
+//   })
+//     .then((res) => {
+//       if (res.ok) return res.json();
+//     })
+//     .then((response) => {
+//       console.log(response);
+//     });
+// });
 
-// Code to delete a single - unspecified quote (old & unscalable) 
+// Code to delete a single - unspecified quote (old & unscalable)
 // deleteButton.addEventListener("click", (_) => {
 //   fetch("/quotes", {
 //     method: "delete",
@@ -45,11 +44,11 @@ update.addEventListener("click", () => {
 
 const deleteIndividual = document.querySelectorAll(".individual-delete");
 
-
-// TODO/FIX: Update messaeg div repending on success or not (maybe not necessary)
+// TODO/FIX: Update message div repending on success or not (maybe not necessary)
 deleteIndividual.forEach((button) => {
   button.addEventListener("click", (e) => {
-    let currentDeleteId = e.path[1].id;
+    // console.log(e.path[2].id);
+    let currentDeleteId = e.path[2].id;
     console.log(currentDeleteId);
     fetch("/quotes", {
       method: "delete",
@@ -60,12 +59,12 @@ deleteIndividual.forEach((button) => {
     })
       .then((res) => {
         // console.log(res);
-        location.reload()
+        location.reload();
         // if (res.ok) return res.json();
       })
-      .then(()=>{
-        location.reload()
-      })
+      // .then(() => {
+      //   location.reload();
+      // })
       // .then((response) => {
       //   if (response === "No quote to delete") {
       //     messageDiv.textContent = "No Darth Vadar quote to delete";
@@ -77,24 +76,24 @@ deleteIndividual.forEach((button) => {
   });
 });
 
-    // API request to LOTR API. 
-    const newQuoteBtn = document.querySelector(".new-quote")
-    newQuoteBtn.addEventListener('click', function(e) {
-      // console.log('button was clicked');
+// API request to LOTR API.
+const newQuoteBtn = document.querySelector(".new-quote");
+newQuoteBtn.addEventListener("click", function (e) {
+  fetch("/clicked", { method: "POST" })
+    .then(function (response) {
+      console.log(response);
+      if (response.ok) {
+        console.log("Click was recorded");
+        return;
+      }
+      throw new Error("Request failed.");
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-      fetch('/clicked', {method: 'POST'})
-        .then(function(response) {
-          console.log(response)
-          // if(response.ok) {
-          //   console.log('Click was recorded');
-          //   // location.reload()
-          //   return;
-          // }
-          // throw new Error('Request failed.');
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
+  // todo - refactor - Auto reload instead of a delay forced one to update the UI
+  setTimeout(() => {
+    location.reload();
+  }, 800);
 });
-
-

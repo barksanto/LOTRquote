@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
 }
-
+/* todo GET FONT/ LOTR typography */
 html {
   font-size: 125%;
   line-height: 1.4;
@@ -19,7 +19,7 @@ body {
   background-repeat:no-repeat;
   background-size:contain;
   background-position:center;
-  background-color: black;
+  background-color: #143129;
   /* object-fit: contain; */
   /* min-height: 100%; */
   /* display: block; */
@@ -72,15 +72,38 @@ h1{
   border: 2px solid goldenrod;
   border-radius: 6px;
   padding: 10px;
-  background-color: black;
+  background-color: #143129;
 }
-
 .quote{
-  background-color: rgb(132, 132, 132);
+  background-color: #4b6b56;
   border: 1px solid white;
   margin: 5px 0;
+  padding: 10px;
+  border-radius: 4px;
 }
 
 .individual-delete{
   float: right;
+}
+
+
+.quote{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.character{
+  font-size: 1.2rem;
+}
+
+.character--quote{
+  font-size: 16px;
+}
+
+li{
+  /* max-width: 80vw; */
+}
+.quote-content{
+  max-width: 80vw;;
 }

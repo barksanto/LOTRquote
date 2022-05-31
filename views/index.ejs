@@ -3,7 +3,7 @@
 
 <head>
   <!-- <meta charset="UTF-8" /> -->
-  <title>Star Wars Quote App</title>
+  <title>LOTR Quotes 🥳</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 
@@ -14,7 +14,7 @@
   <div class="top--section">
     <button class="new-quote"> Get new quote</button> <!-- Can delete or move later -->
     <div class="top--card">
-      <h3>Add a quote</h3>
+      <h3>Add your own quote</h3>
       <form action="/quotes" method="POST">
         <input type="text" placeholder="name" name="name" />
         <input type="text" placeholder="quote" name="quote" />
@@ -23,13 +23,13 @@
     </div>
   
   
-    <div class="top--card">
+    <!-- <div class="top--card">
       <h3>Darth Vadar invades!</h3>
       <p>
         Replace first Yoda's quote with a quote written by Darth Vadar
       </p>
       <button id="update-button">Replace Yoda's quote</button>
-    </div>
+    </div> -->
     
     <!-- <div class="top--card">
       <h3>Remove Darth Vadar!</h3>
@@ -52,15 +52,20 @@
       <!-- Loop through quotes -->
       <% for(var i=0; i < quotes.length; i++) {%>
         <li class="quote" id=<%=quotes[i]._id %> >
-          <!-- Output name from the iterated quote object -->
-          <span>
-            <%= quotes[i].name %>
-          </span>:
-          <!-- Output quote from the iterated quote object -->
-          <span>
-            <%= quotes[i].quote %>
-          </span>
-          <button class="individual-delete">Delete this quote</button>
+          <div class="quote-content">
+            <!-- Output name from the iterated quote object -->
+            <span class="character">
+              <%= quotes[i].name %>
+            </span>:
+            <!-- Output quote from the iterated quote object -->
+            <span class="character--quote">
+              <%= quotes[i].quote %>
+            </span>            
+          </div>
+          <div>
+                      <button class="individual-delete">Delete this quote</button>
+
+          </div>
         </li>
         
         <% } %>
