@@ -22,55 +22,56 @@ body {
   background-size:contain;
   background-position:center;
   background-color: #143129;
-
-
-
-  /* min-height: 100%; */
-  /* display: block; */
 } 
 
-/* [data-position="header"] {
-  grid-area: header;
+form{
+  display: flex;
+  flex-direction: column;
 }
 
-[data-position="add-quotes"] {
-  grid-area: add-quotes;
+.top--card h3{
+  text-align: center;
+  
 }
 
-[data-position="update-quotes"] {
-  grid-area: update-quotes;
-}
 
-[data-position="delete-quotes"] {
-  grid-area: delete-quotes;
+form button{
+  background-color: #baffa0;
+  border-radius: 6px;
+  margin-top: 5px;
+  height: 30px;
 }
-
-[data-position="quotes"] {
-  grid-area: quotes;
-  overflow: scroll;
-}
-
-[data-position] {
-  background-color: white;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
-} */
 
 h1{
   text-align: center;
+  background-color: #4b6b56;
+  font-family: 'Bilbo', cursive;
+}
+
+.new-quote{
+  width: 150px;
+  height: 50px;
+  background-color: #baffa0;
+  border-radius: 6px;
+  margin-top: 10px;
 }
 
 
 .top--section{
   display: flex;
   justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
 }
 
 .top--section > div{
   width: 30%;
 }
 
+.character, .character--quote{
+  font-family: 'Cormorant Unicase', serif;
+
+}
 
 .top--card, .quotes{
   border: 2px solid goldenrod;
@@ -106,6 +107,10 @@ h1{
 }
 
 
+.quotes h2{
+  font-family: 'Bilbo', cursive;
+}
+
 .quote-content{
   max-width: 80vw;
 }
@@ -114,6 +119,7 @@ h1{
   width: 90vw;
   margin: 0 auto;
   margin-top: 10px;
+  opacity: .95;
 }
 
 .individual-delete {

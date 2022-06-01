@@ -4,6 +4,13 @@
 <head>
   <!-- <meta charset="UTF-8" /> -->
   <title>LOTR Quotes 🥳</title>
+
+  <!-- GOOGLE FONTS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bilbo&family=Cormorant+Unicase:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <!-- FONT AWESOME -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.1/css/all.css" crossorigin="anonymous">
   <link rel="stylesheet" href="/styles.css">
 </head>
@@ -13,34 +20,15 @@
 
   <!-- action is WHERE to send the request -->
   <div class="top--section">
-    <button class="new-quote"> Add a new quote</button> <!-- Can delete or move later -->
     <div class="top--card">
       <h3>Add your own quote</h3>
       <form action="/quotes" method="POST">
-        <input type="text" placeholder="name" name="name" />
-        <input type="text" placeholder="quote" name="quote" />
+        <input type="text" placeholder="Author name..." name="name" />
+        <input type="text" placeholder="Precious quote..." name="quote" />
         <button type="submit">Submit</button>
       </form>
     </div>
-  
-  
-    <!-- <div class="top--card">
-      <h3>Darth Vadar invades!</h3>
-      <p>
-        Replace first Yoda's quote with a quote written by Darth Vadar
-      </p>
-      <button id="update-button">Replace Yoda's quote</button>
-    </div> -->
-    
-    <!-- <div class="top--card">
-      <h3>Remove Darth Vadar!</h3>
-      <p>
-        Delete one Darth Vadar's quote. Does nothing if there are no more Darth
-        Vadar's quote
-      </p>
-      <button id="delete-button">Delete Darth Vadar's quote</button>
-      <div id="message"></div>
-    </div> -->
+    <button class="new-quote"> ➕ Add random quote</button> <!-- Can delete or move later -->
 
 
   </div>
@@ -50,7 +38,7 @@
     
     <!-- <%= quotes %> -->
     <ul class="quotes">
-      <h2>QUOTES</h2>
+      <h2>QUOTES:</h2>
       <!-- Loop through quotes -->
       <% for(var i=0; i < quotes.length; i++) {%>
         <li class="quote" id=<%=quotes[i]._id %> >
