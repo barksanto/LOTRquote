@@ -43,7 +43,7 @@ const messageDiv = document.querySelector("#message");
 // });
 
 const deleteIndividual = document.querySelectorAll(".individual-delete");
-
+const deleteTrash = document.querySelector("delete-trash");
 // TODO/FIX: Update message div repending on success or not (maybe not necessary)
 deleteIndividual.forEach((button) => {
   button.addEventListener("click", (e) => {

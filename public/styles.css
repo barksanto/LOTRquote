@@ -14,13 +14,17 @@ body {
   margin: 0 auto;
   color: white;
   background-image: url("https://images.unsplash.com/photo-1511813246609-8057aed99883?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2074&q=80");
+
+
   height: 100%;
   width: 100%;
   background-repeat:no-repeat;
   background-size:contain;
   background-position:center;
   background-color: #143129;
-  /* object-fit: contain; */
+
+
+
   /* min-height: 100%; */
   /* display: block; */
 } 
@@ -101,9 +105,28 @@ h1{
   font-size: 16px;
 }
 
-li{
-  /* max-width: 80vw; */
-}
+
 .quote-content{
-  max-width: 80vw;;
+  max-width: 80vw;
 }
+
+.quotes{
+  width: 90vw;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.individual-delete {
+  width: 100%;
+  height: 100%;
+  margin-left: 10px;
+  background-color: #a45454;
+  color: white;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.individual-delete > span{
+  pointer-events: none;
+}
+
