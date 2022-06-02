@@ -1,11 +1,17 @@
 // /* eslint-env browser */
 const updateBtns = document.querySelectorAll(".update-button");
 
+// Add event listener to edit buttons
 updateBtns.forEach((button) => {
   button.addEventListener("click", (event) => {
-    console.log(event.path[2].id);
+    // console.log(event.path[2].id);
+    launchModal(event.path[2].id);
   });
 });
+// Callback for Edit Button click event
+function launchModal(id) {
+  console.log(id);
+}
 
 // update.addEventListener("click", () => {
 //   fetch("/quotes", {
