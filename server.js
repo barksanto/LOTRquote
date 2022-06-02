@@ -48,6 +48,27 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     //     })
     //     .catch((error) => console.error(error));
     // });
+    // ! this is a copy of the above
+    // app.put("/quotes", (req, res) => {
+    //   quotesCollection
+    //     .findOneAndUpdate(
+    //       { name: "Yoda" },
+    //       {
+    //         $set: {
+    //           name: req.body.name,
+    //           quote: req.body.quote,
+    //         },
+    //       },
+    //       {
+    //         upsert: true,
+    //       }
+    //     )
+    //     .then((result) => {
+    //       // console.log(result);
+    //       res.json("Success");
+    //     })
+    //     .catch((error) => console.error(error));
+    // });
 
     app.get("/", (req, res) => {
       const cursor = db
