@@ -2,9 +2,8 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser"); // Middleware for helping read request object
 var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query
-const https = require('https');
-const axios = require('axios');
-
+const https = require("https");
+const axios = require("axios");
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
@@ -27,7 +26,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.set("view engine", "ejs");
     app.use(express.static("public"));
     app.use(bodyParser.json());
-
 
     // UPDATE
     // app.put("/quotes", (req, res) => {
@@ -85,35 +83,34 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
           return res.json(`Quote has been deleted!`);
         })
         .catch((error) => console.error(error));
-      console.log(typeof req.body.id === "string");
     });
 
-
     app.post("/clicked", (req, res) => {
-      axios.get('https://lotr-random-quote-api.herokuapp.com/api/quote')
-      .then(res => {
-        const headerDate = res.headers && res.headers.date ? res.headers.date : 'no response date';
-        
-        const quoteData = res.data;
+      axios
+        .get("https://lotr-random-quote-api.herokuapp.com/api/quote")
+        .then((res) => {
+          const headerDate =
+            res.headers && res.headers.date
+              ? res.headers.date
+              : "no response date";
 
-        const newQuote = {
-          name: quoteData.author,
-          quote: quoteData.quote
-        }
-        
-         quotesCollection
-        .insertOne(newQuote)
-        .then((result) => {
-          console.log(result);
+          const quoteData = res.data;
+
+          const newQuote = {
+            name: quoteData.author,
+            quote: quoteData.quote,
+          };
+
+          quotesCollection
+            .insertOne(newQuote)
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((error) => console.error(error));
         })
-        .catch((error) => console.error(error));
-
-      })
-      .catch(err => {
-        console.log('Error: ', err.message);
-      });
-    })
-
-
+        .catch((err) => {
+          console.log("Error: ", err.message);
+        });
+    });
   })
   .catch(console.error);
