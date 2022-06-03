@@ -35,6 +35,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .toArray()
         .then((results) => {
           // results is the array of objects in the collection
+          console.log(results);
           res.render("index.ejs", { quotes: results }); // passing 'quotes' variable to ejs template for us to use
         })
         .catch((error) => console.error(error));

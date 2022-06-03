@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
 }
-/* todo GET FONT/ LOTR typography */
+
 html {
   font-size: 125% !important;
   line-height: 1.4 !important;
@@ -34,7 +34,6 @@ form{
   
 }
 
-
 form button{
   background-color: #baffa0;
   border-radius: 6px;
@@ -54,7 +53,6 @@ h1{
   border-radius: 6px;
   margin-top: 10px;
 }
-
 
 .top--section{
   display: flex;
@@ -78,6 +76,7 @@ h1{
   padding: 10px;
   background-color: #143129;
 }
+
 .quote{
   background-color: #4b6b56;
   border: 1px solid white;
@@ -89,7 +88,6 @@ h1{
 .individual-delete{
   float: right;
 }
-
 
 .quote{
   display: flex;
@@ -145,8 +143,6 @@ h1{
 .update-button > span{
   pointer-events: none;
 }
-
-
 
 /* Edit modal */
 .modal{

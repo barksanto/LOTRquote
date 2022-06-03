@@ -35,6 +35,7 @@
       <form action="/quotes" method="POST">
         <input type="text" placeholder="Author name..." name="name" />
         <input type="text" placeholder="Precious quote..." name="quote" />
+        <input type="text" placeholder="image" name="image" style="display: none;" value="https://www.indiewire.com/wp-content/uploads/2021/04/lord-of-the-rings-orc.png"/>
         <button type="submit">Submit</button>
       </form>
     </div>
@@ -55,7 +56,12 @@
         <li class="quote" id=<%=quotes[i]._id %> >
           <div class="quote-content">
             <!-- Output name from the iterated quote object -->
+            
+
+
             <img src=<%=quotes[i].image %> alt="" class="character-image">
+
+
             <span class="character">
               <%= quotes[i].name %>
             </span>:
