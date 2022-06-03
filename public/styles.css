@@ -64,7 +64,7 @@ h1{
 }
 
 .top--section > div{
-  width: 30%;
+  width: 50%;
 }
 
 .character, .character--quote{
@@ -151,4 +151,11 @@ h1{
 /* Edit modal */
 .modal{
   color: black;
+}
+
+.character-image{
+  height: 50px;
+  width: 50px;
+  border-radius: 6px;
+  border: 1px solid goldenrod;
 }

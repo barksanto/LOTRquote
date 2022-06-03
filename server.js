@@ -21,7 +21,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       console.log("Listening on 3000 🔔");
     });
 
-    // MIDDLEWARE
+    // Express specific Middleware
     app.use(bodyParser.urlencoded({ extended: true })); // tells bodyParser to use urlencoded- this way we can extract data from the request (req.body)
     app.set("view engine", "ejs");
     app.use(express.static("public"));
@@ -62,7 +62,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch((error) => console.error(error));
     });
 
-    // Add quote
+    // Add  random quote
     app.post("/quotes", (req, res) => {
       quotesCollection
         .insertOne(req.body)
@@ -92,10 +92,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .get("https://lotr-random-quote-api.herokuapp.com/api/quote")
         .then((res) => {
           const quoteData = res.data;
-
+          console.log(res.data);
           const newQuote = {
             name: quoteData.author,
             quote: quoteData.quote,
+            image: quoteData.image,
           };
 
           quotesCollection
