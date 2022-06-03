@@ -28,26 +28,29 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.use(bodyParser.json());
 
     // UPDATE
-    // app.put("/quotes", (req, res) => {
-    //   quotesCollection
-    //     .findOneAndUpdate(
-    //       { name: "Yoda" },
-    //       {
-    //         $set: {
-    //           name: req.body.name,
-    //           quote: req.body.quote,
-    //         },
-    //       },
-    //       {
-    //         upsert: true,
-    //       }
-    //     )
-    //     .then((result) => {
-    //       // console.log(result);
-    //       res.json("Success");
-    //     })
-    //     .catch((error) => console.error(error));
-    // });
+    app.put("/quotes", (req, res) => {
+      console.log(req.body);
+      const { id, quote } = req.body;
+      console.log(id, quote);
+      // quotesCollection
+      //   .findOneAndUpdate(
+      //     { name: "Yoda" },
+      //     {
+      //       $set: {
+      //         name: req.body.name,
+      //         quote: req.body.quote,
+      //       },
+      //     },
+      //     {
+      //       upsert: true,
+      //     }
+      //   )
+      //   .then((result) => {
+      //     // console.log(result);
+      //     res.json("Success");
+      //   })
+      //   .catch((error) => console.error(error));
+    });
     // ! this is a copy of the above
     // app.put("/quotes", (req, res) => {
     //   quotesCollection

@@ -14,12 +14,27 @@ const sendQuoteBtn = document.querySelector(".send-message");
 sendQuoteBtn.addEventListener("click", () => {
   // console.log(quoteId);
   let modalNewText = document.querySelector("#message-text");
-  updateQuoteText();
+  updateQuoteText(modalNewText.value);
   console.log(modalNewText.value + " for ID:" + quoteId);
 });
 
-function updateQuoteText() {
+function updateQuoteText(newQuote) {
   console.log("gonna send the fetch!");
+
+  fetch("/quotes", {
+    method: "put",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id: quoteId,
+      quote: newQuote,
+    }),
+  })
+    .then((res) => {
+      if (res.ok) return res.json();
+    })
+    .then((response) => {
+      console.log(response);
+    });
 }
 
 // Callback for Edit Button click event
