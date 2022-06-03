@@ -10,12 +10,12 @@ updateBtns.forEach((button) => {
   });
 });
 
-const sendQuoteBtn = document.querySelector(".send-message");
+const sendQuoteBtn = document.querySelector(".send-message"); // send msg button in modal
+
 sendQuoteBtn.addEventListener("click", () => {
-  // console.log(quoteId);
+  // on submit, send put request
   let modalNewText = document.querySelector("#message-text");
   updateQuoteText(modalNewText.value);
-  // console.log(modalNewText.value + " for ID:" + quoteId);
 });
 
 function updateQuoteText(newQuote) {
@@ -26,14 +26,10 @@ function updateQuoteText(newQuote) {
       id: quoteId,
       quote: newQuote,
     }),
-  })
-    .then((res) => {
-      location.reload();
-      if (res.ok) return res.redirect("/");
-    })
-    .then((response) => {
-      console.log(response);
-    });
+  }).then((res) => {
+    location.reload();
+    if (res.ok) return res.redirect("/");
+  });
 }
 
 // Callback for Edit Button click event

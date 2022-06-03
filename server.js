@@ -17,7 +17,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     const db = client.db("STARQUOTE");
     const quotesCollection = db.collection("quotes");
 
-    app.listen(3000, function () {
+    app.listen(process.env.PORT || 3000, function () {
       console.log("Listening on 3000 🔔");
     });
 
@@ -50,6 +50,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         })
         .catch((error) => console.error(error));
     });
+
     // ! this is a copy of the above
     // app.put("/quotes", (req, res) => {
     //   quotesCollection
