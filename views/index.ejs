@@ -40,8 +40,6 @@
       </form>
     </div>
     <button class="new-quote"> ➕ Add random quote</button> <!-- Can delete or move later -->
-
-
   </div>
 
   <div class="bottom--section">
@@ -56,12 +54,7 @@
         <li class="quote" id=<%=quotes[i]._id %> >
           <div class="quote-content">
             <!-- Output name from the iterated quote object -->
-            
-
-
             <img src=<%=quotes[i].image %> alt="" class="character-image">
-
-
             <span class="character">
               <%= quotes[i].name %>
             </span>:
@@ -82,8 +75,6 @@
         <% } %>
     </ul>
   </div>
-
-
 
 <!-- Bootstrap Edit Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
