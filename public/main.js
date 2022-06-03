@@ -1,17 +1,28 @@
 // /* eslint-env browser */
 const updateBtns = document.querySelectorAll(".update-button");
 
+let quoteId;
+
 // Add event listener to edit buttons
 updateBtns.forEach((button) => {
   button.addEventListener("click", (event) => {
-    // console.log(event.path[2].id);
-    launchModal(event.path[2].id);
+    quoteId = event.path[2].id; // Save quoteId
   });
 });
-// Callback for Edit Button click event
-function launchModal(id) {
-  console.log(id);
+
+const sendQuoteBtn = document.querySelector(".send-message");
+sendQuoteBtn.addEventListener("click", () => {
+  // console.log(quoteId);
+  let modalNewText = document.querySelector("#message-text");
+  updateQuoteText();
+  console.log(modalNewText.value + " for ID:" + quoteId);
+});
+
+function updateQuoteText() {
+  console.log("gonna send the fetch!");
 }
+
+// Callback for Edit Button click event
 
 // update.addEventListener("click", () => {
 //   fetch("/quotes", {
@@ -29,9 +40,9 @@ function launchModal(id) {
 //       console.log(response);
 //     });
 // });
-
+// TODO: remove modal once submitted
 const deleteIndividual = document.querySelectorAll(".individual-delete");
-// TODO/FIX: Update message div repending on success or not (maybe not necessary)
+
 deleteIndividual.forEach((button) => {
   button.addEventListener("click", (e) => {
     // console.log(e.path[2].id);
