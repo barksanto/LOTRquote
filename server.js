@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser"); // Middleware for helping read request object
-var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query
+var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query for DB
 const https = require("https");
 const axios = require("axios");
 
@@ -27,11 +27,22 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.use(express.static("public"));
     app.use(bodyParser.json());
 
-    // UPDATE
+    // Get existing quotes from DB
+    app.get("/", (req, res) => {
+      const cursor = db
+        .collection("quotes")
+        .find()
+        .toArray()
+        .then((results) => {
+          // results is the array of objects in the collection
+          res.render("index.ejs", { quotes: results }); // passing 'quotes' variable to ejs template for us to use
+        })
+        .catch((error) => console.error(error));
+    });
+
+    // Update existing quote
     app.put("/quotes", (req, res) => {
-      console.log(req.body);
       const { id, quote } = req.body;
-      // console.log(id, quote);
       quotesCollection
         .findOneAndUpdate(
           { _id: ObjectId(id) },
@@ -51,56 +62,23 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .catch((error) => console.error(error));
     });
 
-    // ! this is a copy of the above
-    // app.put("/quotes", (req, res) => {
-    //   quotesCollection
-    //     .findOneAndUpdate(
-    //       { name: "Yoda" },
-    //       {
-    //         $set: {
-    //           name: req.body.name,
-    //           quote: req.body.quote,
-    //         },
-    //       },
-    //       {
-    //         upsert: true,
-    //       }
-    //     )
-    //     .then((result) => {
-    //       // console.log(result);
-    //       res.json("Success");
-    //     })
-    //     .catch((error) => console.error(error));
-    // });
-
-    app.get("/", (req, res) => {
-      const cursor = db
-        .collection("quotes")
-        .find()
-        .toArray()
-        .then((results) => {
-          // results is the array of objects in the collection
-          res.render("index.ejs", { quotes: results }); // passing 'quotes' variable to ejs template for us to use
-        })
-        .catch((error) => console.error(error));
-    });
-
+    // Add quote
     app.post("/quotes", (req, res) => {
-      // console.log(req.body)
       quotesCollection
         .insertOne(req.body)
         .then((result) => {
-          // console.log(result);
           res.redirect("/");
         })
         .catch((error) => console.error(error));
     });
 
+    // Delete one quote
     app.delete("/quotes", (req, res) => {
       quotesCollection
         .deleteOne({ _id: ObjectId(req.body.id) })
         .then((result) => {
           if (result.deletedCount === 0) {
+            console.log("Quote deleted");
             return res.json("No quote to delete");
           }
           // console.log(result);
@@ -113,11 +91,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       axios
         .get("https://lotr-random-quote-api.herokuapp.com/api/quote")
         .then((res) => {
-          const headerDate =
-            res.headers && res.headers.date
-              ? res.headers.date
-              : "no response date";
-
           const quoteData = res.data;
 
           const newQuote = {
@@ -127,10 +100,10 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
           quotesCollection
             .insertOne(newQuote)
-            .then((result) => {
-              console.log(result);
-            })
             .catch((error) => console.error(error));
+        })
+        .then(() => {
+          res.redirect("/");
         })
         .catch((err) => {
           console.log("Error: ", err.message);
