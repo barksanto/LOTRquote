@@ -28,7 +28,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.use(bodyParser.json());
 
     // Get existing quotes from DB
-    app.get("/", (req, res) => {
+    app.get("https://unique-quokka-a2af0a.netlify.app/", (req, res) => {
       const cursor = db
         .collection("quotes")
         .find()
