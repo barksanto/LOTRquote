@@ -31,25 +31,24 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.put("/quotes", (req, res) => {
       console.log(req.body);
       const { id, quote } = req.body;
-      console.log(id, quote);
-      // quotesCollection
-      //   .findOneAndUpdate(
-      //     { name: "Yoda" },
-      //     {
-      //       $set: {
-      //         name: req.body.name,
-      //         quote: req.body.quote,
-      //       },
-      //     },
-      //     {
-      //       upsert: true,
-      //     }
-      //   )
-      //   .then((result) => {
-      //     // console.log(result);
-      //     res.json("Success");
-      //   })
-      //   .catch((error) => console.error(error));
+      // console.log(id, quote);
+      quotesCollection
+        .findOneAndUpdate(
+          { _id: ObjectId(id) },
+          {
+            $set: {
+              quote: quote,
+            },
+          },
+          {
+            upsert: false,
+          }
+        )
+        .then((result) => {
+          // res.json("Success");
+          res.redirect("/");
+        })
+        .catch((error) => console.error(error));
     });
     // ! this is a copy of the above
     // app.put("/quotes", (req, res) => {

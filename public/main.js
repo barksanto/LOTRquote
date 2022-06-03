@@ -15,12 +15,10 @@ sendQuoteBtn.addEventListener("click", () => {
   // console.log(quoteId);
   let modalNewText = document.querySelector("#message-text");
   updateQuoteText(modalNewText.value);
-  console.log(modalNewText.value + " for ID:" + quoteId);
+  // console.log(modalNewText.value + " for ID:" + quoteId);
 });
 
 function updateQuoteText(newQuote) {
-  console.log("gonna send the fetch!");
-
   fetch("/quotes", {
     method: "put",
     headers: { "Content-Type": "application/json" },
@@ -30,7 +28,8 @@ function updateQuoteText(newQuote) {
     }),
   })
     .then((res) => {
-      if (res.ok) return res.json();
+      location.reload();
+      if (res.ok) return res.redirect("/");
     })
     .then((response) => {
       console.log(response);
