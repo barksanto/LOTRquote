@@ -4,7 +4,7 @@
   "description": "Crud Express MongoDB",
   "main": "index.js",
   "scripts": {
-    "start": "node pm2.js",
+    "start": "node index.js",
     "dev": "nodemon server.js",
     "sync": "node sync.js"
   },
