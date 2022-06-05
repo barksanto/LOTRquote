@@ -2,7 +2,7 @@
   "name": "crudo",
   "version": "1.0.0",
   "description": "Crud Express MongoDB",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js",
