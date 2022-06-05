@@ -4,6 +4,7 @@ const bodyParser = require("body-parser"); // Middleware for helping read reques
 var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query for DB
 const https = require("https");
 const axios = require("axios");
+const cors = require("cors");
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
