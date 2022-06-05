@@ -5,6 +5,10 @@ var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for de
 const https = require("https");
 const axios = require("axios");
 
+const cors = require("cors");
+
+app.use(cors());
+
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
 const connectionString =
