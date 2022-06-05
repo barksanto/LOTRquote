@@ -5,10 +5,6 @@ var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for de
 const https = require("https");
 const axios = require("axios");
 
-const cors = require("cors");
-
-app.use(cors());
-
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
 const connectionString =
@@ -20,6 +16,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log("Connected to Database");
     const db = client.db("STARQUOTE");
     const quotesCollection = db.collection("quotes");
+    app.use(cors());
 
     app.listen(process.env.PORT || 3000, function () {
       console.log("Listening on 3000 🔔");
