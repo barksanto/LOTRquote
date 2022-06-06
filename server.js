@@ -4,7 +4,8 @@ const bodyParser = require("body-parser"); // Middleware for helping read reques
 var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query for DB
 const https = require("https");
 const axios = require("axios");
-const cors = require("cors");
+
+
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
@@ -27,7 +28,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.set("view engine", "ejs");
     app.use(express.static("public"));
     app.use(bodyParser.json());
-    app.use(cors);
+
     // Get existing quotes from DB
     app.get("/", (req, res) => {
       const cursor = db
@@ -36,7 +37,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
         .toArray()
         .then((results) => {
           // results is the array of objects in the collection
-          console.log(quotes);
           res.render("index.ejs", { quotes: results }); // passing 'quotes' variable to ejs template for us to use
         })
         .catch((error) => console.error(error));

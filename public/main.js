@@ -1,5 +1,6 @@
 // /* eslint-env browser */
 const updateBtns = document.querySelectorAll(".update-button");
+const modalText = document.querySelector(".col-form-label");
 
 let quoteId;
 
@@ -7,6 +8,10 @@ let quoteId;
 updateBtns.forEach((button) => {
   button.addEventListener("click", (event) => {
     quoteId = event.path[2].id; // Save quoteId
+
+    // get character name to put in modal
+    let charName = event.path[2].children[0].childNodes[5].innerText;
+    modalText.innerHTML = `New quote for ${charName}.`;
   });
 });
 

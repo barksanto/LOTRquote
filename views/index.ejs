@@ -56,11 +56,11 @@
             <!-- Output name from the iterated quote object -->
             <img src=<%=quotes[i].image %> alt="" class="character-image">
             <span class="character">
-              <%= quotes[i].name %>
+              <%=quotes[i].name%>
             </span>:
             <!-- Output quote from the iterated quote object -->
             <span class="character--quote">
-              <%= quotes[i].quote %>
+              <%=quotes[i].quote%>
             </span>            
           </div>
           <div>
@@ -97,7 +97,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary send-message">Send message</button>
+        <button type="button" class="btn btn-primary send-message">Update quote</button>
       </div>
     </div>
   </div>
