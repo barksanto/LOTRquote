@@ -17,7 +17,6 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     console.log("Connected to Database");
     const db = client.db("STARQUOTE");
     const quotesCollection = db.collection("quotes");
-    app.use(cors());
 
     app.listen(process.env.PORT || 3000, function () {
       console.log("Listening on 3000 🔔");
@@ -28,16 +27,16 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     app.set("view engine", "ejs");
     app.use(express.static("public"));
     app.use(bodyParser.json());
-
+    app.use(cors);
     // Get existing quotes from DB
-    app.get("https://unique-quokka-a2af0a.netlify.app/", (req, res) => {
+    app.get("/", (req, res) => {
       const cursor = db
         .collection("quotes")
         .find()
         .toArray()
         .then((results) => {
           // results is the array of objects in the collection
-          console.log(results);
+          console.log(quotes);
           res.render("index.ejs", { quotes: results }); // passing 'quotes' variable to ejs template for us to use
         })
         .catch((error) => console.error(error));
