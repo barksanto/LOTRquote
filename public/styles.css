@@ -67,7 +67,7 @@ h1{
 
 .character, .character--quote{
   font-family: 'Cormorant Unicase', serif;
-
+  
 }
 
 .top--card, .quotes{
@@ -100,7 +100,7 @@ h1{
 }
 
 .character--quote{
-  font-size: 16px;
+  font-size: 1.2rem;
 }
 
 
@@ -158,4 +158,12 @@ h1{
 
 .update-quote--btn{
   background-color: #4b6b56;
+}
+
+.block-btn{
+  pointer-events: none;
+  /* background-color: red; */
+    background-image: -webkit-linear-gradient(#757f85, #629e86);
+    color: rgb(177, 175, 175);
+
 }

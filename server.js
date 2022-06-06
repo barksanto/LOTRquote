@@ -4,8 +4,7 @@ const bodyParser = require("body-parser"); // Middleware for helping read reques
 var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query for DB
 const https = require("https");
 const axios = require("axios");
-
-
+const e = require("rsync");
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
@@ -66,12 +65,18 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
     // Add  random quote
     app.post("/quotes", (req, res) => {
-      quotesCollection
-        .insertOne(req.body)
-        .then((result) => {
-          res.redirect("/");
-        })
-        .catch((error) => console.error(error));
+      // console.log(req.body);
+
+      if (req.body.name !== "" && req.body.quote !== "") {
+        quotesCollection
+          .insertOne(req.body)
+          .then((result) => {
+            res.redirect("/");
+          })
+          .catch((error) => console.error(error));
+      } else {
+        res.json("Couldn't add quote. Please add Author Name and Quote.");
+      }
     });
 
     // Delete one quote

@@ -15,7 +15,7 @@ updateBtns.forEach((button) => {
   });
 });
 
-const sendQuoteBtn = document.querySelector(".send-message"); // send msg button in modal
+const sendQuoteBtn = document.querySelector(".update-quote--btn"); // send msg button in modal
 
 sendQuoteBtn.addEventListener("click", () => {
   // on submit, send put request
@@ -61,6 +61,7 @@ deleteIndividual.forEach((button) => {
 });
 
 // API request to LOTR API for random quote
+//  + ADD RANDOM QUOTE BUTTON
 const newQuoteBtn = document.querySelector(".new-quote");
 newQuoteBtn.addEventListener("click", function (e) {
   fetch("/clicked", { method: "POST" })
@@ -71,3 +72,17 @@ newQuoteBtn.addEventListener("click", function (e) {
       console.log(error);
     });
 });
+
+// const customQuoteForm = document.querySelector("#custom-quote");
+
+const addCustomQuoteBtn = document.querySelector(".custom-submit");
+setInterval(() => {
+  let authorCustom = document.querySelector(".custom-author");
+  let quoteCustom = document.querySelector(".custom-quote");
+  console.log("trying");
+  if (authorCustom.value.length > 0 && quoteCustom.value.length > 0) {
+    addCustomQuoteBtn.classList.remove("block-btn");
+  } else {
+    addCustomQuoteBtn.classList.add("block-btn");
+  }
+}, 1000);
