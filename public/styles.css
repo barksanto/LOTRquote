@@ -155,3 +155,7 @@ h1{
   border-radius: 6px;
   border: 1px solid goldenrod;
 }
+
+.update-quote--btn{
+  background-color: #4b6b56;
+}
