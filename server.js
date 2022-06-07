@@ -85,9 +85,9 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       quotesCollection
         .deleteOne({ _id: ObjectId(req.body.id) })
         .then((result) => {
-          if (result.deletedCount === 0) {
+          if (result.ok) {
             console.log("Quote deleted");
-            return res.json("No quote to delete");
+            return res.json("Quote deleted");
           }
           return res.json(`Quote has been deleted!`);
         })
@@ -95,11 +95,12 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     });
 
     app.post("/clicked", (req, res) => {
+      // console.log(res);
       axios
         .get("https://lotr-random-quote-api.herokuapp.com/api/quote")
         .then((res) => {
           const quoteData = res.data;
-          console.log(res.data);
+          // console.log(res.data);
           const newQuote = {
             name: quoteData.author,
             quote: quoteData.quote,

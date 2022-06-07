@@ -24,6 +24,7 @@ sendQuoteBtn.addEventListener("click", () => {
 });
 
 function updateQuoteText(newQuote) {
+  // console.log(quoteId, newQuote);
   fetch("/quotes", {
     method: "put",
     headers: { "Content-Type": "application/json" },
@@ -31,10 +32,11 @@ function updateQuoteText(newQuote) {
       id: quoteId,
       quote: newQuote,
     }),
-  }).then((res) => {
-    location.reload();
-    if (res.ok) return res.redirect("/");
-  });
+  })
+    .then((res) => {
+      location.reload();
+    })
+    .catch(console.error);
 }
 
 // Callback for Edit Button click event
