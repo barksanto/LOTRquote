@@ -79,10 +79,9 @@ const addCustomQuoteBtn = document.querySelector(".custom-submit");
 setInterval(() => {
   let authorCustom = document.querySelector(".custom-author");
   let quoteCustom = document.querySelector(".custom-quote");
-  console.log("trying");
   if (authorCustom.value.length > 0 && quoteCustom.value.length > 0) {
     addCustomQuoteBtn.classList.remove("block-btn");
   } else {
     addCustomQuoteBtn.classList.add("block-btn");
   }
-}, 1000);
+}, 500);
