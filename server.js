@@ -4,7 +4,7 @@ const bodyParser = require("body-parser"); // Middleware for helping read reques
 var ObjectId = require("mongodb").ObjectID; // to gain access to ObjectID for delete query for DB
 const https = require("https");
 const axios = require("axios");
-const e = require("rsync");
+const cors = require("cors");
 
 // MongoDB Database
 const MongoClient = require("mongodb").MongoClient;
@@ -18,6 +18,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
     const db = client.db("STARQUOTE");
     const quotesCollection = db.collection("quotes");
 
+    app.use(cors());
     app.listen(process.env.PORT || 3000, function () {
       console.log("Listening on 3000 🔔");
     });
