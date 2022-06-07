@@ -85,12 +85,11 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
       quotesCollection
         .deleteOne({ _id: ObjectId(req.body.id) })
         .then((result) => {
-          // if (result.deletedCount === 0) {
-          //   console.log("Quote deleted");
-          //   return res.json("No quote to delete");
-          // }
-          // return res.json(`Quote has been deleted!`);
-          console.log(res.json("quote deleted"));
+          if (result.deletedCount === 0) {
+            console.log("Quote deleted");
+            return res.json("No quote to delete");
+          }
+          return res.json(`Quote has been deleted!`);
         })
         .catch((error) => console.error(error));
     });
